@@ -1,66 +1,66 @@
-# asbestos-material-detection
-OCR-based material extraction and database matching for asbestos risk screening in building drawings.
-# Asbestos Material Detection Using OCR and Database Matching
+# Asbestos Screening Tool for Building Drawings
+
+An OCR-based application for extracting material descriptions from building drawings and matching them against a reference database to support preliminary asbestos risk screening.
 
 ## Overview
 
-This project explores an OCR-based approach to extracting material names and specifications from architectural and structural building drawings and matching the extracted information against a reference materials database.
+Building drawings and material schedules may contain technical descriptions of construction materials. Reviewing these descriptions manually can be time-consuming.
 
-The goal is to support preliminary screening of building materials for potential asbestos-related risks using text extraction and database matching.
+This project combines Optical Character Recognition (OCR), image processing, text matching, and an interactive Streamlit interface to help identify materials that may require further asbestos assessment.
 
-## Problem Statement
+**Important:** This tool provides preliminary screening only. It cannot confirm the presence or absence of asbestos.
 
-Architectural and structural drawings may contain material descriptions, product specifications, abbreviations, and other technical annotations. Reviewing these documents manually can be time-consuming.
+## Key Features
 
-This project explores a workflow that combines Optical Character Recognition (OCR), text processing, and database matching to identify material descriptions that may require further asbestos-related review.
+- **Drawing and Image Upload:** Upload building drawings or photographs of material schedules.
+- **OCR-Based Text Extraction:** Extract text from supported images using EasyOCR.
+- **Enhanced OCR:** Optionally process an enhanced image copy to help detect additional text.
+- **Manual Material Entry:** Enter material descriptions directly for screening.
+- **CSV and Excel Upload:** Upload material schedules for processing.
+- **Database Matching:** Compare extracted material descriptions with a reference materials database.
+- **Screening Results:** Review matched materials, likelihood indicators, and screening statuses.
+- **Report Export:** Download screening results as a CSV report.
+- **Country and Construction-Year Inputs:** Provide contextual information for preliminary screening.
 
-## Objectives
-
-- Extract text from building drawing images using OCR.
-- Process and normalize detected material descriptions.
-- Match extracted text against a reference materials database.
-- Display potential matches and matching results.
-- Provide an interactive interface for testing the workflow.
-
-## Project Workflow
-
-1. **Input:** Upload a supported building drawing or document image.
-2. **OCR:** Detect text regions and recognize material-related text.
-3. **Text processing:** Clean and normalize the extracted text.
-4. **Database matching:** Compare extracted descriptions with entries in the reference database.
-5. **Result display:** Present extracted text, matched records, and relevant screening results through the application interface.
-
-## Technologies Used
+## Technology Stack
 
 - Python
-- Optical Character Recognition (OCR)
-- Image Processing
-- Text Processing and String Matching
-- Pandas
 - Streamlit
-- CSV-based material reference database
+- EasyOCR
+- OpenCV
+- Pandas
+- NumPy
+- RapidFuzz
+- Pillow
 
-*Update this list to reflect the libraries and methods actually implemented in the code.*
+## Application Workflow
+
+1. Upload a building drawing, material schedule, or image.
+2. Extract text using OCR, or enter material descriptions manually.
+3. Process and normalize the extracted text.
+4. Match material descriptions against the reference database.
+5. Review the screening results and unmatched text.
+6. Export the report for further review.
 
 ## Repository Structure
 
 ```text
 asbestos-material-detection/
-├── app.py
 ├── README.md
+├── app.py
+├── screening.py
 ├── requirements.txt
-├── .gitignore
-├── data/
-│   └── material_matching_test.csv
-└── screenshots/
-    └── application_demo.png
+├── asbestos_reference.csv
+└── Asbestos_Screening_Colab.ipynb
 ```
 
-*Adjust the structure and filenames to match the files included in the repository.*
+The repository contains the application code, screening logic, reference data, documentation, and development notebook. The CSV filename shown above is illustrative; use the exact filename committed to the repository.
 
 ## Installation
 
 ### 1. Clone the repository
+
+Replace `YOUR-USERNAME` with your GitHub username.
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/asbestos-material-detection.git
@@ -85,9 +85,11 @@ Activate it on Windows:
 pip install -r requirements.txt
 ```
 
+EasyOCR also depends on PyTorch. Its required model weights may be downloaded during the first run.
+
 ## Run the Application
 
-If the Streamlit application is saved as `app.py`, run:
+Start the Streamlit application from the project directory:
 
 ```bash
 streamlit run app.py
@@ -95,31 +97,35 @@ streamlit run app.py
 
 Open the local URL displayed in your terminal, usually `http://localhost:8501`.
 
-Upload a supported sample drawing and review the OCR extraction and material-matching results.
+Ensure that the reference database is available at the file path expected by the application.
 
 ## Current Status
 
-This project is under development. OCR extraction, database matching, and the application workflow are being tested. Detection quality and matching reliability depend on drawing quality, OCR performance, and the coverage of the reference database.
+The application has been developed and tested through a Google Colab-based workflow. GitHub is used to maintain the source code and project documentation.
 
-## Limitations and Safety
+Further testing is needed to evaluate OCR quality, database-matching reliability, and deployment compatibility across different building drawings.
 
-- OCR may misread text in low-resolution, rotated, handwritten, or complex technical drawings.
-- Material descriptions may be ambiguous, abbreviated, or missing from the reference database.
-- A text match does not establish that a product contains asbestos.
-- The application is a preliminary screening and research tool, not a substitute for qualified asbestos assessment, laboratory testing, or applicable regulatory procedures.
+## Limitations
+
+- OCR performance may vary with image resolution, rotation, image quality, and complex drawing layouts.
+- Abbreviations and ambiguous material descriptions can produce incorrect or incomplete matches.
+- The reference database may not contain every material or product description.
+- A missing database match does not mean that a material is asbestos-free.
+- A positive text match does not establish the actual asbestos content of a material.
+
+## Safety Disclaimer
+
+This application is intended for research and preliminary screening. It is not a certified asbestos detection system and must not be used as definitive evidence of asbestos presence or absence.
+
+Do not drill, cut, break, or sample suspected materials yourself. Consult a qualified asbestos professional and use appropriate laboratory analysis and applicable local procedures.
 
 ## Future Improvements
 
-- Improve OCR performance on architectural and engineering drawings.
-- Add confidence scores and more robust fuzzy matching.
-- Support structured extraction of material specifications.
-- Expand the reference database using verified and appropriately licensed sources.
-- Evaluate extraction and matching performance on a labeled test dataset.
-- Improve the interface and reporting of uncertain results.
-
-## Disclaimer
-
-This project is intended for research and preliminary screening only. Its outputs must not be used as definitive confirmation of asbestos presence or absence. Suspected materials should be assessed by qualified professionals using appropriate procedures.
+- Improve OCR performance on technical drawings and material schedules.
+- Introduce more robust material-name normalization and fuzzy matching.
+- Evaluate the system against a labeled test dataset.
+- Improve reporting of ambiguous matches and confidence levels.
+- Expand the reference database using verified, appropriately licensed information.
 
 ## Author
 
