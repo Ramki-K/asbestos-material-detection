@@ -126,9 +126,3 @@ Do not drill, cut, break, or sample suspected materials yourself. Consult a qual
 - Evaluate the system against a labeled test dataset.
 - Improve reporting of ambiguous matches and confidence levels.
 - Expand the reference database using verified, appropriately licensed information.
-
-## Author
-
-Ramakrishnan K  
-M.Tech, Energy Science and Technology  
-Indian Institute of Technology Hyderabad
