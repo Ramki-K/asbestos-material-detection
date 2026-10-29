@@ -1,5 +1,8 @@
 streamlit
-pandas
-Pillow
 easyocr
 opencv-python-headless
+rapidfuzz
+pandas
+numpy
+Pillow
+openpyxl
